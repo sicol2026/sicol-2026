@@ -31,3 +31,42 @@
   // 초기값
   setActiveById(sections[0].id);
 })();
+
+// ========== Deadline countdown ==========
+(function () {
+  const el = document.getElementById("countdown");
+  if (!el) return;
+
+  // 마감: May 31, 2026 23:59:59 (KST 기준으로 보여주고 싶으면 타임존 처리 필요)
+  // 정적 사이트에서 타임존까지 엄밀히 하려면 서버가 없으니, 보통 "AoE" 또는 "KST" 문구로 안내합니다.
+  // 여기서는 사용자의 브라우저 시간 기준으로 계산합니다.
+  const deadline = new Date("2026-05-31T23:59:59");
+
+  function pad(n) { return String(n).padStart(2, "0"); }
+
+  function render() {
+    const now = new Date();
+    const diff = deadline.getTime() - now.getTime();
+
+    if (Number.isNaN(deadline.getTime())) {
+      el.textContent = "Invalid deadline date.";
+      return;
+    }
+
+    if (diff <= 0) {
+      el.textContent = "The abstract submission deadline has passed.";
+      return;
+    }
+
+    const totalSeconds = Math.floor(diff / 1000);
+    const days = Math.floor(totalSeconds / (24 * 3600));
+    const hours = Math.floor((totalSeconds % (24 * 3600)) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    el.textContent = `${days}d ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s remaining`;
+  }
+
+  render();
+  setInterval(render, 1000);
+})();
