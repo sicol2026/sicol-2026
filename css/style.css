@@ -11,10 +11,6 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 
-section {
-  scroll-margin-top: 110px;
-}
-
 body{
   margin:0;
   font-family: Georgia, "Times New Roman", serif;
@@ -166,4 +162,12 @@ nav a.active{
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 6px;
+}
+
+html{
+  scroll-padding-top: var(--header-offset, 120px);
+}
+
+section[id]{
+  scroll-margin-top: var(--header-offset, 120px);
 }
