@@ -118,7 +118,7 @@ main{
 .meta{
   margin-top:14px;
   padding:14px;
-  font-size: 27px;
+  font-size: 20px;
   background:var(--panel);
   border:1px solid var(--line);
   border-radius:var(--radius);
