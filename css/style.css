@@ -32,6 +32,16 @@ header{
   z-index:100;
 }
 
+.main-logo{
+  margin:20px 0 10px;
+  text-align:center;   /* 가운데 정렬 */
+}
+
+.main-logo img{
+  height:88px;   /* 🔥 요청한 크기 */
+  width:auto;
+}
+
 .navrow{
   display:flex;
   align-items:center;
