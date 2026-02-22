@@ -4,358 +4,124 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SICOL 2026 — Theory Returns</title>
-  <meta name="description" content="The 2026 Seoul International Conference on Linguistics (SICOL-2026). August 10–11, 2026. Sungshin Women’s University, Seoul, Korea." />
 
-  <style>
-    :root{
-      --ink:#111827;
-      --muted:#4b5563;
-      --line:#e5e7eb;
-      --paper:#ffffff;
-      --panel:#fafafa;
-      --accent:#3b2ea3;
-      --max: 980px;
-      --radius: 14px;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      color:var(--ink);
-      background:var(--paper);
-      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
-      line-height:1.7;
-    }
-
-    a{color:var(--accent); text-decoration:none}
-    a:hover{text-decoration:underline}
-
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
-
-    /* Top nav */
-    header{
-      position:sticky; top:0; z-index:50;
-      background:rgba(255,255,255,.92);
-      backdrop-filter: blur(10px);
-      border-bottom:1px solid var(--line);
-    }
-    .navrow{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      padding:14px 0;
-    }
-
-    /* Brand with logo on the top-left */
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      text-decoration:none;
-      min-width: 260px;
-    }
-    .logo-top{
-      height:88px;   /* adjust if needed: 45 / 55 / 65 */
-      width:auto;
-      display:block;
-    }
-    .brand-text{
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-    }
-    .brand .kicker{
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:var(--muted);
-    }
-    .brand .title{
-      font-size:16px;
-      font-weight:700;
-      color:var(--ink);
-    }
-
-    nav{
-      display:flex; flex-wrap:wrap;
-      gap:10px;
-      justify-content:flex-end;
-    }
-    nav a{
-      font-size:13px;
-      color:var(--ink);
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid transparent;
-    }
-    nav a:hover{
-      border-color:var(--line);
-      background:#fff;
-      text-decoration:none;
-    }
-
-    /* Layout */
-    main{padding:26px 0 36px}
-
-    .hero{
-      margin-top:4px;
-    }
-    .hero h1{
-      margin:0 0 8px;
-      font-size:32px;
-      line-height:1.2;
-      letter-spacing:-.01em;
-    }
-    .subtitle{
-      margin:0 0 14px;
-      color:var(--muted);
-      font-size:15px;
-    }
-
-    .meta{
-      display:grid;
-      gap:6px;
-      margin:14px 0 0;
-      padding:14px;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background:var(--panel);
-      font-size:14px;
-    }
-    .meta strong{font-weight:700}
-
-    section{
-      margin-top:22px;
-      padding-top:22px;
-      border-top:1px solid var(--line);
-    }
-
-    h2{
-      margin:0 0 10px;
-      font-size:18px;
-      letter-spacing:.01em;
-    }
-
-    .box{
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background:var(--panel);
-      padding:16px;
-    }
-
-    ul{margin:10px 0 0; padding-left:18px}
-    li{margin:6px 0}
-
-    .grid2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-      margin-top:10px;
-    }
-
-    .note{
-      font-size:13px;
-      color:var(--muted);
-      margin-top:10px;
-    }
-
-    footer{
-      border-top:1px solid var(--line);
-      margin-top:28px;
-      padding:16px 0 28px;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    @media (max-width: 900px){
-      nav{justify-content:flex-start}
-      .brand{min-width:unset}
-      .logo-top{height:46px}
-    }
-    @media (max-width: 640px){
-      .grid2{grid-template-columns:1fr}
-      .hero h1{font-size:28px}
-      .logo-top{height:44px}
-    }
-  </style>
+  <!-- CSS 연결 -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <header>
-    <div class="wrap navrow">
-      <a class="brand" href="#main" aria-label="Go to main">
-        <img src="logo.png" alt="SICOL 2026 logo" class="logo-top">
-        <div class="brand-text">
-          <div class="kicker">Seoul International Conference on Linguistics</div>
-          <div class="title">SICOL-2026</div>
-        </div>
-      </a>
 
-      <nav aria-label="Primary">
-        <a href="#main">Main</a>
-        <a href="#speakers">Invited Speakers</a>
-        <a href="#cfp">Call for Papers</a>
-        <a href="#registration">Registration</a>
-        <a href="#timeline">Timeline</a>
-        <a href="#committee">Committee</a>
-        <a href="#contact">Contact</a>
-      </nav>
+<header>
+  <div class="wrap navrow">
+    <div class="brand-text-only">
+      <div class="kicker">Seoul International Conference on Linguistics</div>
+      <div class="title">SICOL-2026</div>
     </div>
-  </header>
 
-  <main class="wrap">
-    <section id="main" class="hero" style="border-top:none; padding-top:0; margin-top:0;">
-      <h1>The 2026 Seoul International Conference on Linguistics (SICOL-2026)</h1>
-      <p class="subtitle">
-        <strong>Theory Returns: Linguistics in the Age of AI</strong>
-      </p>
+    <nav>
+      <a href="#main">Main</a>
+      <a href="#speakers">Invited Speakers</a>
+      <a href="#cfp">Call for Papers</a>
+      <a href="#registration">Registration</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#committee">Committee</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-      <div class="meta" role="note" aria-label="Conference details">
-        <div><strong>Venue:</strong> Sungshin Women’s University, Seoul, Korea</div>
-        <div><strong>Dates:</strong> August 10–11, 2026</div>
-        <div><strong>Host:</strong> Linguistic Society of Korea (LSK)</div>
-        <div><strong>Participation:</strong> In-person</div>
-      </div>
+<main class="wrap">
 
-      <p class="note">
-        Abstract submissions will be handled via EasyChair (submission link to be announced).
-      </p>
-    </section>
+<section id="main" class="hero">
+  <h1>The 2026 Seoul International Conference on Linguistics (SICOL-2026)</h1>
+  <p class="subtitle"><strong>Theory Returns: Linguistics in the Age of AI</strong></p>
 
-    <section>
-      <h2>Conference Description</h2>
-      <div class="box">
-        <p>
-          The Linguistic Society of Korea (LSK) is pleased to announce the 2026 Seoul International Conference on Linguistics (SICOL-2026),
-          to be held on August 10–11, 2026 at Sungshin Women’s University, Seoul, Korea.
-        </p>
+  <div class="main-logo">
+    <img src="logo.png" alt="SICOL 2026 logo">
+  </div>
+  
+  <div class="meta">
+    <div><strong>Venue:</strong> Sungshin Women’s University, Seoul, Korea</div>
+    <div><strong>Dates:</strong> August 10–11, 2026</div>
+    <div><strong>Host:</strong> Linguistic Society of Korea (LSK)</div>
+    <div><strong>Participation:</strong> In-person</div>
+  </div>
+</section>
 
-        <p>
-          Recent advances in artificial intelligence, particularly large language models (LLMs), have transformed how language is processed,
-          modeled, and analyzed. As AI systems increasingly simulate aspects of linguistic competence and performance, fundamental questions
-          concerning the nature of linguistic knowledge, structure, and representation become ever more pressing.
-        </p>
+<section>
+<h2>Conference Description</h2>
+<div class="box">
+  <p>
+    The Linguistic Society of Korea (LSK) is pleased to announce SICOL-2026,
+    to be held on August 10–11, 2026 at Sungshin Women’s University.
+  </p>
+  <p>
+    Recent advances in artificial intelligence, particularly large language models (LLMs),
+    have transformed how language is processed and modeled...
+  </p>
+</div>
+</section>
 
-        <p>
-          In such a rapidly evolving intellectual landscape, theoretical linguistics assumes renewed importance. Sustained inquiry into the
-          underlying architecture of the human language faculty—its formal properties, constraints, and explanatory principles—is indispensable
-          for understanding both the limits and implications of AI-driven approaches to language.
-        </p>
+<section id="speakers">
+<h2>Invited Speakers</h2>
+<div class="box">
+  To be announced.
+</div>
+</section>
 
-        <p>
-          SICOL-2026 aims to provide a forum for rigorous investigation of the essential properties of human language, encouraging contributions
-          that engage foundational questions of linguistic theory, formal modeling, and empirical methodology in dialogue with contemporary
-          developments in AI.
-        </p>
+<section id="cfp">
+<h2>Call for Papers</h2>
 
-        <p>
-          We welcome submissions from all subfields of linguistics. Equal consideration will be given to papers directly addressing the conference
-          theme and to papers from all subfields of linguistics.
-        </p>
-      </div>
-    </section>
+<div class="box">
+  <strong>Presentation Format</strong>
+  <ul>
+    <li>20-minute oral presentation</li>
+    <li>10 minutes discussion</li>
+  </ul>
 
-    <section id="speakers">
-      <h2>Invited Speakers</h2>
-      <div class="box">
-        <p class="note">To be announced.</p>
-      </div>
-    </section>
+  <p><strong>Abstract Submission Guidelines</strong></p>
+  <ul>
+    <li>Double-blind review</li>
+    <li>Max 2 pages including references</li>
+    <li>12pt Times New Roman</li>
+    <li>PDF format only</li>
+  </ul>
+</div>
+</section>
 
-    <section id="cfp">
-      <h2>Call for Papers</h2>
+<section id="timeline">
+<h2>Important Dates</h2>
+<div class="box">
+  <ul>
+    <li>Abstract submission: May 31, 2026</li>
+    <li>Notification: June 20, 2026</li>
+    <li>Conference: August 10–11, 2026</li>
+  </ul>
+</div>
+</section>
 
-      <div class="grid2">
-        <div class="box">
-          <strong>Topics include (but are not limited to):</strong>
-          <ul>
-            <li>Theoretical syntax, semantics, morphology, and phonology</li>
-            <li>Interfaces (syntax–semantics, phonology–phonetics, etc.)</li>
-            <li>Neurolinguistics and cognitive approaches</li>
-            <li>AI and theoretical linguistics</li>
-            <li>Methodological issues in the AI era</li>
-          </ul>
-        </div>
+<section id="committee">
+<h2>Committee</h2>
+<div class="box">
+  <ul>
+    <li>Yoon, Tae-Jin (Chair)</li>
+    <li>Jang, Hayeun (Program Chair)</li>
+  </ul>
+</div>
+</section>
 
-        <div class="box">
-          <strong>Presentation Format</strong>
-          <ul>
-            <li>20-minute oral presentation</li>
-            <li>10 minutes for discussion</li>
-          </ul>
-        </div>
-      </div>
+<section id="contact">
+<h2>Contact</h2>
+<div class="box">
+  <a href="mailto:sicol2026@gmail.com">sicol2026@gmail.com</a>
+</div>
+</section>
 
-      <div class="box" style="margin-top:14px;">
-        <strong>Abstract Submission Guidelines</strong>
-        <p class="note" style="margin:8px 0 0;">
-          Abstracts must be submitted electronically via the official submission system (EasyChair).<br/>
-          Submission link: <em>to be announced</em>
-        </p>
-        <ul>
-          <li>Anonymous abstract (double-blind review)</li>
-          <li>Maximum 2 pages (A4 or US letter), including references</li>
-          <li>12-point Times New Roman</li>
-          <li>1-inch (2.54 cm) margins on all sides</li>
-          <li>PDF format only</li>
-        </ul>
+<footer>
+© 2026 SICOL-2026 · Linguistic Society of Korea
+</footer>
 
-        <p style="margin:12px 0 0;"><strong>Each author may submit:</strong></p>
-        <ul>
-          <li>One single-authored abstract and one joint abstract, or</li>
-          <li>Up to two joint abstracts.</li>
-        </ul>
+</main>
 
-        <p class="note">Only electronic submissions via the official system will be considered.</p>
-      </div>
-    </section>
-
-    <section id="registration">
-      <h2>Registration</h2>
-      <div class="box">
-        <p class="note">Registration details will be announced.</p>
-      </div>
-    </section>
-
-    <section id="timeline">
-      <h2>Timeline</h2>
-      <div class="box">
-        <ul>
-          <li><strong>Abstract submission deadline:</strong> May 31, 2026</li>
-          <li><strong>Notification of acceptance:</strong> June 20, 2026</li>
-          <li><strong>Conference dates:</strong> August 10–11, 2026</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="committee">
-      <h2>Committee</h2>
-      <div class="box">
-        <strong>Organizing Committee</strong>
-        <ul>
-          <li>Yoon, Tae-Jin (Organizing Committee Chair)</li>
-          <li>Jang, Hayeun (Program Committee Chair)</li>
-          <li>Additional members to be listed</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="box">
-        <p>
-          All inquiries regarding abstract submission and conference details should be directed to:
-          <a href="mailto:sicol2026@gmail.com">sicol2026@gmail.com</a>
-        </p>
-      </div>
-    </section>
-
-    <footer>
-      © 2026 SICOL-2026 · Hosted and organized by the Linguistic Society of Korea (LSK)
-    </footer>
-  </main>
 </body>
-
 </html>
