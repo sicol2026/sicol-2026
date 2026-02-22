@@ -37,10 +37,8 @@
   const el = document.getElementById("countdown");
   if (!el) return;
 
-  // 마감: May 31, 2026 23:59:59 (KST 기준으로 보여주고 싶으면 타임존 처리 필요)
-  // 정적 사이트에서 타임존까지 엄밀히 하려면 서버가 없으니, 보통 "AoE" 또는 "KST" 문구로 안내합니다.
-  // 여기서는 사용자의 브라우저 시간 기준으로 계산합니다.
-  const deadline = new Date("2026-05-31T23:59:59");
+  // 마감: May 31, 2026 23:59:59 (AoE)
+  const deadline = new Date("2026-06-01T11:59:59Z");
 
   function pad(n) { return String(n).padStart(2, "0"); }
 
