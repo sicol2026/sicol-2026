@@ -1,38 +1,58 @@
 // ===============================
-// Active menu highlight (precise version)
+// Active menu highlight (robust: works with sticky header + scroll-margin)
 // ===============================
 (function () {
+  const header = document.querySelector("header");
   const navLinks = Array.from(document.querySelectorAll("header nav a[href^='#']"));
   const sections = navLinks
     .map(link => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
 
-  if (!sections.length) return;
+  if (!navLinks.length || !sections.length) return;
 
-  function setActive(id) {
+  function headerHeight() {
+    return header ? header.offsetHeight : 0;
+  }
+
+  function setActiveById(id) {
     navLinks.forEach(link => {
       link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
     });
   }
 
-  function onScroll() {
-    const header = document.querySelector("header");
-    const headerHeight = header ? header.offsetHeight : 0;
+  function computeActiveSection() {
+    const y = window.scrollY + 1; // current scroll
+    const h = headerHeight();
 
-    const scrollPosition = window.scrollY + headerHeight + 5;
+    let currentId = sections[0].id;
 
-    let currentSectionId = sections[0].id;
-
-    for (let section of sections) {
-      if (section.offsetTop <= scrollPosition) {
-        currentSectionId = section.id;
+    for (const s of sections) {
+      // 핵심: 섹션의 "유효 시작점"을 (섹션 top - header 높이)로 잡는다
+      if (y >= (s.offsetTop - h - 2)) {
+        currentId = s.id;
       }
     }
-
-    setActive(currentSectionId);
+    return currentId;
   }
 
-  window.addEventListener("scroll", onScroll);
+  function onScroll() {
+    setActiveById(computeActiveSection());
+  }
+
+  // 클릭 시 즉시 밑줄 → 스크롤 후에도 정정
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      const target = link.getAttribute("href").slice(1);
+      setActiveById(target);
+
+      // 앵커 스크롤이 끝난 뒤 상태 재계산 (브라우저마다 타이밍 차이 보정)
+      setTimeout(onScroll, 50);
+      setTimeout(onScroll, 200);
+    });
+  });
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
   window.addEventListener("load", onScroll);
 })();
 
