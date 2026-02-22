@@ -1,59 +1,80 @@
-// ===============================
-// Active menu highlight (robust: works with sticky header + scroll-margin)
-// ===============================
-(function () {
+// ======================================
+// Nav active highlight (click-first + robust scroll detection)
+// ======================================
+(() => {
   const header = document.querySelector("header");
   const navLinks = Array.from(document.querySelectorAll("header nav a[href^='#']"));
+
+  if (!navLinks.length) return;
+
   const sections = navLinks
-    .map(link => document.querySelector(link.getAttribute("href")))
+    .map(a => document.querySelector(a.getAttribute("href")))
     .filter(Boolean);
 
-  if (!navLinks.length || !sections.length) return;
+  const getHeaderH = () => (header ? header.offsetHeight : 0);
 
-  function headerHeight() {
-    return header ? header.offsetHeight : 0;
-  }
-
-  function setActiveById(id) {
-    navLinks.forEach(link => {
-      link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+  function setActive(id) {
+    navLinks.forEach(a => {
+      a.classList.toggle("active", a.getAttribute("href") === `#${id}`);
     });
   }
 
-  function computeActiveSection() {
-    const y = window.scrollY + 1; // current scroll
-    const h = headerHeight();
-
-    let currentId = sections[0].id;
+  // 헤더 바로 아래(기준선)에 가장 가까운 section을 active로
+  function computeActive() {
+    const h = getHeaderH();
+    const threshold = 8; // 헤더 아래 몇 px까지 "붙었다"고 볼지
+    let best = null;
 
     for (const s of sections) {
-      // 핵심: 섹션의 "유효 시작점"을 (섹션 top - header 높이)로 잡는다
-      if (y >= (s.offsetTop - h - 2)) {
-        currentId = s.id;
+      const rect = s.getBoundingClientRect();
+      const t = rect.top - h; // 헤더 아래 기준선 기준 top
+
+      // 기준선 위(<=threshold)에 있는 섹션 중, 기준선에 가장 가까운(가장 큰 t) 섹션 선택
+      if (t <= threshold) {
+        if (!best || t > best.t) best = { id: s.id, t };
       }
     }
-    return currentId;
+
+    // 아직 아무 섹션도 기준선 위로 올라오지 않았다면 첫 섹션
+    return best ? best.id : sections[0].id;
   }
 
+  let raf = null;
   function onScroll() {
-    setActiveById(computeActiveSection());
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = null;
+      setActive(computeActive());
+    });
   }
 
-  // 클릭 시 즉시 밑줄 → 스크롤 후에도 정정
-  navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      const target = link.getAttribute("href").slice(1);
-      setActiveById(target);
-
-      // 앵커 스크롤이 끝난 뒤 상태 재계산 (브라우저마다 타이밍 차이 보정)
+  // 1) 클릭하면 즉시 밑줄 (사용자 기대 충족)
+  // 2) 앵커 스크롤이 끝난 후 다시 계산해 보정
+  navLinks.forEach(a => {
+    a.addEventListener("click", () => {
+      const id = a.getAttribute("href").slice(1);
+      setActive(id);
       setTimeout(onScroll, 50);
       setTimeout(onScroll, 200);
+      setTimeout(onScroll, 500);
     });
+  });
+
+  // 해시가 바뀌는 경우(뒤로가기 등)도 반영
+  window.addEventListener("hashchange", () => {
+    const id = (location.hash || "#").slice(1);
+    if (id) setActive(id);
+    setTimeout(onScroll, 50);
   });
 
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll);
-  window.addEventListener("load", onScroll);
+  window.addEventListener("load", () => {
+    // 초기 상태: 해시가 있으면 그걸, 없으면 스크롤 기반으로
+    const id = (location.hash || "").slice(1);
+    if (id) setActive(id);
+    onScroll();
+  });
 })();
 
 // ========== Deadline countdown ==========
