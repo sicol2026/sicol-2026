@@ -105,7 +105,7 @@ main{
 
 .hero h1{
   font-family: 'Source Sans 3', sans-serif;
-  font-size: 34px;
+  font-size: 37px;
   line-height: 1.25;
   font-weight: 700;
   letter-spacing: -0.3px;
@@ -118,6 +118,7 @@ main{
 .meta{
   margin-top:14px;
   padding:14px;
+  font-size: 27px;
   background:var(--panel);
   border:1px solid var(--line);
   border-radius:var(--radius);
