@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /blob/
+Disallow: /releases/
+Disallow: /network/
+Disallow: /community/
+Disallow: /tree/
